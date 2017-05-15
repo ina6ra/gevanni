@@ -29,7 +29,7 @@ describe('getupdates.js', function() {
       Sugar.Object.set(mymock, 'Properties.getProperty', function(key) {
         return fixture['ScriptProperties'][key];
       });
-      uid = glib.gu_getUpdateID_();
+      uid = glib.telegram.getUpdateID();
       assert.typeOf(uid, 'Number');
     });
     it('NaN 対応（文字列を無理矢理 数値変換した場合）');
@@ -38,7 +38,7 @@ describe('getupdates.js', function() {
   // test for getApiToken()
   describe('#getApiToken()', function() {
     it('should return API Token of gevanni_bot', function() {
-      token = glib.gu_getApiToken_();
+      token = glib.telegram.getApiToken();
       assert.equal(token, fixture['ScriptProperties']['api_token']);
     });
   });
@@ -47,7 +47,7 @@ describe('getupdates.js', function() {
   describe('#telegraApiUrl()', function() {
     it('should return API Url', function() {
       method = 'getUpdates';
-      url = glib.gu_telegraApiUrl_(token, method);
+      url = glib.telegram.getApiUrl(token, method);
       assert.equal(url, fixture['telegraApiUrl']['url']);
     });
   });
@@ -66,7 +66,7 @@ describe('getupdates.js', function() {
           description: "Conflict: can't use getUpdates method while webhook is active"
         });
       });
-      json = glib.gu_telegraGetUpdates_(url);
+      json = glib.telegram.getUpdates(url);
       assert.equal(json, false);
     });
 
@@ -75,7 +75,7 @@ describe('getupdates.js', function() {
       Sugar.Object.set(mymock, 'HTTPResponse.getContentText', function(charset) {
         return JSON.stringify({ok:true, result:[]});
       });
-      json = glib.gu_telegraGetUpdates_(url);
+      json = glib.telegram.getUpdates(url);
       assert.typeOf(json.result, 'Array');
     });
 
@@ -85,7 +85,7 @@ describe('getupdates.js', function() {
   // test for createPayloadList()
   describe('#createPayloadList()', function() {
     it('should return Array Class', function() {
-      result = glib.gu_createPayloadList_(json, uid);
+      result = glib.telegram.createPayloadList(json, uid);
       assert.typeOf(result, 'Array');
     });
 
@@ -98,8 +98,8 @@ describe('getupdates.js', function() {
         }];
         return JSON.stringify(json);
       });
-      json = glib.gu_telegraGetUpdates_(url);
-      result = glib.gu_createPayloadList_(json, uid);
+      json = glib.telegram.getUpdates(url);
+      result = glib.telegram.createPayloadList(json, uid);
       assert.equal(result.length, 0);
     });
 
@@ -116,8 +116,8 @@ describe('getupdates.js', function() {
         }];
         return JSON.stringify(json);
       });
-      json = glib.gu_telegraGetUpdates_(url);
-      result = glib.gu_createPayloadList_(json, uid);
+      json = glib.telegram.getUpdates(url);
+      result = glib.telegram.createPayloadList(json, uid);
       assert.equal(result.length, 0);
     });
 
@@ -141,8 +141,8 @@ describe('getupdates.js', function() {
         }];
         return JSON.stringify(json);
       });
-      json = glib.gu_telegraGetUpdates_(url);
-      result = glib.gu_createPayloadList_(json, uid);
+      json = glib.telegram.getUpdates(url);
+      result = glib.telegram.createPayloadList(json, uid);
       assert.equal(result[0].disable_web_page_preview, true);
     });
 
