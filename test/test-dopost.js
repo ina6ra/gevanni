@@ -3,10 +3,8 @@ var gas = require('gas-local');
 var Sugar = require('sugar');
 var config = require('config');
 
-// $ yarn add file:../gas-mock
 // $ yarn add https://github.com/ina6ra/gas-mock
-//var mock = require('gas-mock');
-var mock = require('../../gas-mock');
+var mock = require('gas-mock');
 
 var mymock = mock.gas_mock();
 

@@ -4,6 +4,7 @@ var Sugar = require('sugar');
 var request = require('sync-request');
 var config = require('config');
 
+// $ yarn add https://github.com/ina6ra/gas-mock
 var mock = require('gas-mock');
 
 var mymock = mock.gas_mock();
