@@ -20,6 +20,7 @@ describe('getupdates.js', function() {
   var url;
   var json;
   var result;
+  var setup = config.get('Setup');
   var fixture = config.get('Fixture');
 
   // test for getUpdateID()
@@ -27,7 +28,7 @@ describe('getupdates.js', function() {
     it('should return Number Class', function() {
       // Properties.getProperty の上書き
       Sugar.Object.set(mymock, 'Properties.getProperty', function(key) {
-        return fixture['ScriptProperties'][key];
+        return setup['ScriptProperties'][key];
       });
       uid = glib.telegram.getUpdateID();
       assert.typeOf(uid, 'Number');
@@ -39,7 +40,7 @@ describe('getupdates.js', function() {
   describe('#getApiToken()', function() {
     it('should return API Token of gevanni_bot', function() {
       token = glib.telegram.getApiToken();
-      assert.equal(token, fixture['ScriptProperties']['api_token']);
+      assert.equal(token, setup['ScriptProperties']['api_token']);
     });
   });
 
@@ -48,7 +49,7 @@ describe('getupdates.js', function() {
     it('should return API Url', function() {
       method = 'getUpdates';
       url = glib.telegram.getApiUrl(token, method);
-      assert.equal(url, fixture['telegraApiUrl']['url']);
+      assert.equal(url, setup['telegraApi']['url']);
     });
   });
 
@@ -61,10 +62,7 @@ describe('getupdates.js', function() {
       });
       // HTTPResponse.getContentText の上書き
       Sugar.Object.set(mymock, 'HTTPResponse.getContentText', function(charset) {
-        return JSON.stringify({
-          ok: false, error_code: 409,
-          description: "Conflict: can't use getUpdates method while webhook is active"
-        });
+        return JSON.stringify(fixture['getUpdates']['webhook']);
       });
       json = glib.telegram.getUpdates(url);
       assert.equal(json, false);
@@ -73,7 +71,7 @@ describe('getupdates.js', function() {
     it('should return Array Class', function() {
       // HTTPResponse.getContentText の上書き
       Sugar.Object.set(mymock, 'HTTPResponse.getContentText', function(charset) {
-        return JSON.stringify({ok:true, result:[]});
+        return JSON.stringify(fixture['getUpdates']['Array']);
       });
       json = glib.telegram.getUpdates(url);
       assert.typeOf(json.result, 'Array');
@@ -92,10 +90,7 @@ describe('getupdates.js', function() {
     it('UID以下のとき結果はゼロ', function() {
       // HTTPResponse.getContentText の上書き
       Sugar.Object.set(mymock, 'HTTPResponse.getContentText', function(charset) {
-        json.result = [{
-          update_id: -1,
-          message: {}
-        }];
+        json.result = [fixture['createPayloadList']['uid']['less']];
         return JSON.stringify(json);
       });
       json = glib.telegram.getUpdates(url);
@@ -108,12 +103,7 @@ describe('getupdates.js', function() {
     it('空文字のとき結果はゼロ', function() {
       // HTTPResponse.getContentText の上書き
       Sugar.Object.set(mymock, 'HTTPResponse.getContentText', function(charset) {
-        json.result = [{
-          update_id: 310645964,
-          message: {
-            text: '  　 　  　'
-          }
-        }];
+        json.result = [fixture['createPayloadList']['empty']];
         return JSON.stringify(json);
       });
       json = glib.telegram.getUpdates(url);
@@ -124,21 +114,7 @@ describe('getupdates.js', function() {
     it('プレビューオフ', function() {
       // HTTPResponse.getContentText の上書き
       Sugar.Object.set(mymock, 'HTTPResponse.getContentText', function(charset) {
-        json.result = [{
-          update_id: 310645964,
-          message: {
-            message_id: 792,
-            from: {
-              id: 289888283
-            },
-            chat: {
-              id: 289888283,
-              type: 'private'
-            },
-            date: 1494591008,
-            text: 'hello world'
-          }
-        }];
+        json.result = [fixture['createPayloadList']['all']];
         return JSON.stringify(json);
       });
       json = glib.telegram.getUpdates(url);

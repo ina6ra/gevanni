@@ -88,10 +88,10 @@ describe('dopost.js', function() {
     });
 
     it('最後まで実行できたらtrue', function() {
-      var fixture = config.get('Fixture');
+      var setup = config.get('Setup');
       // Properties.getProperty の上書き
       Sugar.Object.set(mymock, 'Properties.getProperty', function(key) {
-        return fixture['ScriptProperties'][key];
+        return setup['ScriptProperties'][key];
       });
       // UrlFetchApp.fetch の上書き
       Sugar.Object.set(mymock, 'UrlFetchApp.fetch', function(url, params) {
