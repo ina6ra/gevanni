@@ -3,11 +3,13 @@ function myGetUpdates() {
   var token = telegram.getApiToken();
 
   var url = telegram.getApiUrl(token, 'getUpdates');
-
+  
   var json = telegram.getUpdates(url, uid);
   if(json == false) return json;
 
   var result = telegram.createPayloadList(json, uid);
+
+  if(result.length == 0) return false;
 
   url = telegram.getApiUrl(token, 'sendMessage');
 
@@ -24,5 +26,5 @@ function myGetUpdates() {
   var sp = PropertiesService.getScriptProperties();
   sp.setProperty('update_id', String(json.result.pop().update_id));
 
-  return false;
+  return true;
 }
