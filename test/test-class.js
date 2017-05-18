@@ -43,8 +43,8 @@ describe('TelegramAPI.js', function() {
     });
   });
 
-  // test for telegraApiUrl()
-  describe('#telegraApiUrl()', function() {
+  // test for getApiUrl()
+  describe('#getApiUrl()', function() {
     it('should return API Url', function() {
       method = 'getUpdates';
       url = glib.telegram.getApiUrl(token, method);
@@ -52,8 +52,8 @@ describe('TelegramAPI.js', function() {
     });
   });
 
-  // test for telegraGetUpdates()
-  describe('#telegraGetUpdates()', function() {
+  // test for getUpdates()
+  describe('#getUpdates()', function() {
     it('should return false when the webhook is deactive', function() {
       // UrlFetchApp.fetch の上書き
       Sugar.Object.set(mymock, 'UrlFetchApp.fetch', function(url, params) {
