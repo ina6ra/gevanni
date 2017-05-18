@@ -98,6 +98,7 @@ describe('TelegramAPI.js', function() {
     });
 
     it('UIDが等しいとき結果はゼロ');
+    it('UIDのチェックをしない');
 
     it('空文字のとき結果はゼロ', function() {
       // HTTPResponse.getContentText の上書き
