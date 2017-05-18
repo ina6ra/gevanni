@@ -14,7 +14,6 @@ function doPost(e) {
   var text = json.message.text.replace(/　/g, '').trim();
   if(text == '') return 'text2';
 
-  telegram = new TelegramAPI();
   var uid = telegram.getUpdateID();
   var token = telegram.getApiToken();
 

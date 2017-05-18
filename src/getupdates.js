@@ -1,8 +1,4 @@
-var telegram;
-
 function myGetUpdates() {
-  telegram = new TelegramAPI();
-
   var uid = telegram.getUpdateID();
   var token = telegram.getApiToken();
 

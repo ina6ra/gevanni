@@ -55,3 +55,5 @@ var TelegramAPI = function() {
     return result;
   }
 };
+
+var telegram = new TelegramAPI();

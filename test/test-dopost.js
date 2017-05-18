@@ -13,9 +13,6 @@ var mymock = mock.gas_mock();
 // ソースフォルダの指定はプロジェクトルートからの相対パス
 var glib = gas.require('./src', mymock);
 
-// 共通クラスをインスタンス化してグローバル変数に代入
-glib.telegram = new glib.TelegramAPI();
-
 describe('dopost.js', function() {
 
   var e;
