@@ -1,7 +1,6 @@
 var assert = require('chai').assert;
 var gas = require('gas-local');
 var Sugar = require('sugar');
-var request = require('sync-request');
 var config = require('config');
 
 // $ yarn add https://github.com/ina6ra/gas-mock

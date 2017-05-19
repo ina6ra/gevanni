@@ -10,7 +10,6 @@
     "gulp-mocha": "3.0.1",
     "mocha": "^3.2.0",
     "mocha-notifier-reporter": "^0.1.2",
-    "sugar": "^2.0.4",
-    "sync-request": "^4.0.3"
+    "sugar": "^2.0.4"
   }
 }
