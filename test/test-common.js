@@ -22,6 +22,10 @@ describe('common.js', function() {
   var fixture = config.get('Fixture');
 
   before(function() {
+    // UrlFetchApp.fetch の上書き
+    Sugar.Object.set(mymock, 'UrlFetchApp.fetch', function(url, params) {
+      return this.response;
+    });
     // Properties.getProperty の上書き
     Sugar.Object.set(mymock, 'Properties.getProperty', function(key) {
       return setup['ScriptProperties'][key];

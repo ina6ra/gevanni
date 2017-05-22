@@ -54,10 +54,6 @@ describe('TelegramAPI.js', function() {
   // test for getUpdates()
   describe('#getUpdates()', function() {
     it('should return false when the webhook is deactive', function() {
-      // UrlFetchApp.fetch の上書き
-      Sugar.Object.set(mymock, 'UrlFetchApp.fetch', function(url, params) {
-        return this.response;
-      });
       // HTTPResponse.getContentText の上書き
       Sugar.Object.set(mymock, 'HTTPResponse.getContentText', function(charset) {
         return JSON.stringify(fixture['getUpdates']['webhook']);
