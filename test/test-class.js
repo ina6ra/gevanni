@@ -1,12 +1,11 @@
 var assert = require('chai').assert;
-var gas = require('gas-local');
 var Sugar = require('sugar');
 var config = require('config');
 
 // $ yarn add https://github.com/ina6ra/gas-mock
-var mock = require('gas-mock');
+var gas = require('gas-mock');
 
-var mymock = mock.gas_mock();
+var mymock = gas.globalMockDefault;
 
 // ソースフォルダの指定はプロジェクトルートからの相対パス
 var glib = gas.require('./src', mymock);

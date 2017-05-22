@@ -2,7 +2,6 @@
   "dependencies": {
     "chai": "^3.5.0",
     "config": "^1.26.1",
-    "gas-local": "^1.2.0",
     "gas-mock": "https://github.com/ina6ra/gas-mock",
     "gulp": "^3.9.1",
     "gulp-exec": "^2.1.3",
