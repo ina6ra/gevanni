@@ -18,13 +18,13 @@ describe('dopost.js', function() {
   
   // test for doPost()
   describe('#doPost()', function() {
-    
+
     it('引数がnullの場合はエラー', function() {
       e = null;
       result = glib.doPost(e);
       assert.equal(result, 'e');
     });
-    
+
     it('postDataがない場合はエラー', function() {
       e = {};
       result = glib.doPost(e);
@@ -39,16 +39,31 @@ describe('dopost.js', function() {
       assert.equal(result, 'contents');
     });
 
+    it('update_idがない場合はエラー', function() {
+      data = {};
+      e.postData.contents = JSON.stringify(data);
+      result = glib.doPost(e);
+      assert.equal(result, 'update_id');
+    });
+
+    it('投稿済であればエラー', function() {
+      data = {
+        update_id: 12345
+      };
+      e.postData.contents = JSON.stringify(data);
+      result = glib.doPost(e);
+      assert.equal(result, 'update_id2');
+    });
+
     it('messageがない場合はエラー', function() {
-      e.postData = {contents: '{}'};
+      data.update_id = 123456;
+      e.postData.contents = JSON.stringify(data);
       result = glib.doPost(e);
       assert.equal(result, 'message');
     });
 
     it('message_idがない場合はエラー', function() {
-      data = {
-        message: {}
-      };
+      Sugar.Object.merge(data, {message: {}}, {deep: true});
       e.postData.contents = JSON.stringify(data);
       result = glib.doPost(e);
       assert.equal(result, 'message_id');
