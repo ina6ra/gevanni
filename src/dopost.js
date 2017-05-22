@@ -22,7 +22,7 @@ function doPost(e) {
     result: []
   };
   result.result.push(json);
-  result = telegram.createPayloadList(result);
+  result = common.createPayloadList(result);
 
   var url = telegram.getApiUrl(token, 'sendMessage');
 

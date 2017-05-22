@@ -7,7 +7,7 @@ function myGetUpdates() {
   var json = telegram.getUpdates(url, uid);
   if(json == false) return json;
 
-  var result = telegram.createPayloadList(json, uid);
+  var result = common.createPayloadList(json, uid);
 
   if(result.length == 0) return false;
 
