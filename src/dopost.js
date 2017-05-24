@@ -10,7 +10,8 @@ function doPost(e) {
   var update_id = Number(json.update_id);
   var uid = telegram.getUpdateID();
 
-  if(update_id < uid) return 'update_id2';
+  if(update_id == uid) return 'update_id2';
+  if(update_id < uid) return 'update_id3';
 
   if(json.message == null) return 'message';
   if(json.message.message_id == null) return 'message_id';

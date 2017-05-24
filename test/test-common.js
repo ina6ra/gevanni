@@ -49,6 +49,17 @@ describe('common.js', function() {
       assert.typeOf(result, 'Array');
     });
 
+    it('UIDが等しいとき結果はゼロ', function() {
+      // HTTPResponse.getContentText の上書き
+      Sugar.Object.set(mymock, 'HTTPResponse.getContentText', function(charset) {
+        json.result = [fixture['createPayloadList']['uid']['equal']];
+        return JSON.stringify(json);
+      });
+      json = glib.telegram.getUpdates(url);
+      result = glib.common.createPayloadList(json, uid);
+      assert.equal(result.length, 0);
+    });
+
     it('UID以下のとき結果はゼロ', function() {
       // HTTPResponse.getContentText の上書き
       Sugar.Object.set(mymock, 'HTTPResponse.getContentText', function(charset) {
@@ -60,7 +71,6 @@ describe('common.js', function() {
       assert.equal(result.length, 0);
     });
 
-    it('UIDが等しいとき結果はゼロ');
     it('UIDのチェックをしない');
 
     it('空文字のとき結果はゼロ', function() {

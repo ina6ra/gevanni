@@ -6,7 +6,8 @@ var CommonClass = function() {
     var result = [];
     json.result.forEach(function(chat) {
       update_id = Number(chat.update_id);
-      if(update_id <= uid  ) return;
+      if(update_id == uid) return;
+      if(update_id < uid) return;
       text = chat.message.text.replace(/　/g, '').trim();
       if(text == '') return;
       // JsでURI（URL）エンコードとURIデコード - wiki - PCスキルの小技・忘却防止メモ

@@ -48,15 +48,24 @@ describe('dopost.js', function() {
 
     it('投稿済であればエラー', function() {
       data = {
-        update_id: 12345
+        update_id: 123456
       };
       e.postData.contents = JSON.stringify(data);
       result = glib.doPost(e);
       assert.equal(result, 'update_id2');
     });
 
+    it('投稿済であればエラー2', function() {
+      data = {
+        update_id: 12345
+      };
+      e.postData.contents = JSON.stringify(data);
+      result = glib.doPost(e);
+      assert.equal(result, 'update_id3');
+    });
+
     it('messageがない場合はエラー', function() {
-      data.update_id = 123456;
+      data.update_id = 1234567;
       e.postData.contents = JSON.stringify(data);
       result = glib.doPost(e);
       assert.equal(result, 'message');
