@@ -5,11 +5,18 @@ var CommonClass = function() {
     var text = '';
     var result = [];
     json.result.forEach(function(chat) {
+      if(chat.message.from == null) return;
+      if(chat.message.from.id == null) return;
+      if(chat.message.message_id == null) return;
+
       update_id = Number(chat.update_id);
+      if(isNaN(update_id)) return;
       if(update_id == uid) return;
       if(update_id < uid) return;
+
       text = chat.message.text.replace(/　/g, '').trim();
       if(text == '') return;
+
       // JsでURI（URL）エンコードとURIデコード - wiki - PCスキルの小技・忘却防止メモ
       // http://tips.recatnap.info/wiki/Js%E3%81%A7URI%EF%BC%88URL%EF%BC%89%E3%82%A8%E3%83%B3%E3%82%B3%E3%83%BC%E3%83%89%E3%81%A8URI%E3%83%87%E3%82%B3%E3%83%BC%E3%83%89
       text = encodeURIComponent(text);
