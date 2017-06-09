@@ -11,8 +11,8 @@ var CommonClass = function() {
 
       update_id = Number(chat.update_id);
       if(isNaN(update_id)) return;
-      if(update_id == uid) return;
-      if(update_id < uid) return;
+//      if(update_id == uid) return;
+//      if(update_id < uid) return;
 
       text = chat.message.text.replace(/　/g, '').trim();
       if(text == '') return;
