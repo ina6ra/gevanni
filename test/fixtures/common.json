@@ -5,8 +5,7 @@
       "result": []
     },
     "uid": {
-      "empty": {
-      },
+      "empty": {},
       "equal": {
         "update_id": 123456
       },
@@ -14,10 +13,34 @@
         "update_id": -1
       }
     },
-    "text": {
+    "message": {
+      "id": {
+        "update_id": 1234567,
+        "message": {}
+      },
+      "from_id": {
+        "update_id": 1234567,
+        "message": {
+          "message_id": 123,
+          "from": {}
+        }
+      },
+      "text": {
+        "update_id": 1234567,
+        "message": {
+          "message_id": 123,
+          "from": {
+            "id": 1234567890
+          }
+        }
+      },
       "empty": {
         "update_id": 1234567,
         "message": {
+          "message_id": 123,
+          "from": {
+            "id": 1234567890
+          },
           "text": "  　 　  　"
         }
       }

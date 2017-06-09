@@ -10,9 +10,9 @@ var CommonClass = function() {
       if(update_id == uid) return;
       if(update_id < uid) return;
 
-      if(chat.message.from == null) return;
-      if(chat.message.from.id == null) return;
       if(chat.message.message_id == null) return;
+      if(chat.message.from.id == null) return;
+      if(chat.message.text == null) return;
 
       text = chat.message.text.replace(/　/g, '').trim();
       if(text == '') return;

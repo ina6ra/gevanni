@@ -56,8 +56,26 @@ describe('common.js', function() {
 
     it('UIDのチェックをしない');
 
-    it('空文字のとき結果はゼロ', function() {
-      json.result = [fx.common.createPayloadList.text.empty];
+    it('message_id が無いとき結果はゼロ', function() {
+      json.result = [fx.common.createPayloadList.message.id];
+      result = glib.common.createPayloadList(json);
+      assert.equal(result.length, 0);
+    });
+
+    it('from.id が無いとき結果はゼロ', function() {
+      json.result = [fx.common.createPayloadList.message.from_id];
+      result = glib.common.createPayloadList(json);
+      assert.equal(result.length, 0);
+    });
+
+    it('text が無いとき結果はゼロ', function() {
+      json.result = [fx.common.createPayloadList.message.text];
+      result = glib.common.createPayloadList(json);
+      assert.equal(result.length, 0);
+    });
+
+    it('text が空文字のとき結果はゼロ', function() {
+      json.result = [fx.common.createPayloadList.message.empty];
       result = glib.common.createPayloadList(json);
       assert.equal(result.length, 0);
     });
