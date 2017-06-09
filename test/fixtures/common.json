@@ -14,10 +14,12 @@
         "update_id": -1
       }
     },
-    "empty": {
-      "update_id": 1234567,
-      "message": {
-        "text": "  　 　  　"
+    "text": {
+      "empty": {
+        "update_id": 1234567,
+        "message": {
+          "text": "  　 　  　"
+        }
       }
     }
   }

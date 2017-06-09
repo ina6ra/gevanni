@@ -57,7 +57,7 @@ describe('common.js', function() {
     it('UIDのチェックをしない');
 
     it('空文字のとき結果はゼロ', function() {
-      json.result = [fx.common.createPayloadList.empty];
+      json.result = [fx.common.createPayloadList.text.empty];
       result = glib.common.createPayloadList(json);
       assert.equal(result.length, 0);
     });
