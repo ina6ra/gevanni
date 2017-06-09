@@ -1,0 +1,24 @@
+{
+  "createPayloadList": {
+    "Array": {
+      "ok": true,
+      "result": []
+    },
+    "uid": {
+      "equal": {
+        "update_id": 123456,
+        "message": {}
+      },
+      "less": {
+        "update_id": -1,
+        "message": {}
+      }
+    },
+    "empty": {
+      "update_id": 1234567,
+      "message": {
+        "text": "  　 　  　"
+      }
+    }
+  }
+}

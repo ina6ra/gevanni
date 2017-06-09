@@ -9,6 +9,7 @@
     "gulp-mocha": "3.0.1",
     "mocha": "^3.2.0",
     "mocha-notifier-reporter": "^0.1.2",
+    "node-fixtures": "^0.0.1",
     "sugar": "^2.0.4"
   }
 }
