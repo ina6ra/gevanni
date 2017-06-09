@@ -31,28 +31,28 @@ describe('common.js', function() {
       assert.typeOf(result, 'Array');
     });
 
-//    it('UIDが等しいとき結果はゼロ', function() {
-//      // HTTPResponse.getContentText の上書き
-//      Sugar.Object.set(mymock, 'HTTPResponse.getContentText', function(charset) {
-//        json.result = [fixture['createPayloadList']['uid']['equal']];
-//        return JSON.stringify(json);
-//      });
-//      json = glib.telegram.getUpdates(url);
-//      result = glib.common.createPayloadList(json, uid);
-//      assert.equal(result.length, 0);
-//    });
-//
-//    it('UID以下のとき結果はゼロ', function() {
-//      // HTTPResponse.getContentText の上書き
-//      Sugar.Object.set(mymock, 'HTTPResponse.getContentText', function(charset) {
-//        json.result = [fixture['createPayloadList']['uid']['less']];
-//        return JSON.stringify(json);
-//      });
-//      json = glib.telegram.getUpdates(url);
-//      json.result = [fx.common.createPayloadList.uid.equal];
-//      result = glib.common.createPayloadList(json, uid);
-//      assert.equal(result.length, 0);
-//    });
+    it('update_idがないとき結果はゼロ', function() {
+      json.result = [fx.common.createPayloadList.uid.empty];
+      result = glib.common.createPayloadList(json);
+      assert.equal(result.length, 0);
+    });
+
+    it('UIDが等しいとき結果はゼロ', function() {
+      // Properties.getProperty の上書き
+      Sugar.Object.set(mymock, 'Properties.getProperty', function(key) {
+        return setup['ScriptProperties'][key];
+      });
+      uid = glib.telegram.getUpdateID();
+      json.result = [fx.common.createPayloadList.uid.equal];
+      result = glib.common.createPayloadList(json, uid);
+      assert.equal(result.length, 0);
+    });
+
+    it('UID以下のとき結果はゼロ', function() {
+      json.result = [fx.common.createPayloadList.uid.less];
+      result = glib.common.createPayloadList(json, uid);
+      assert.equal(result.length, 0);
+    });
 
     it('UIDのチェックをしない');
 

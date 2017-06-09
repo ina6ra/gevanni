@@ -5,13 +5,13 @@
       "result": []
     },
     "uid": {
+      "empty": {
+      },
       "equal": {
-        "update_id": 123456,
-        "message": {}
+        "update_id": 123456
       },
       "less": {
-        "update_id": -1,
-        "message": {}
+        "update_id": -1
       }
     },
     "empty": {
