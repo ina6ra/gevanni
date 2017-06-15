@@ -1,14 +1,12 @@
+var init = require('./init-mock');
 var expect = require('chai').expect;
-var Sugar = require('sugar');
-var config = require('config');
+var Sugar = init.Sugar;
+var config = init.config;
+var fx = init.fx;
 
-// $ yarn add https://github.com/ina6ra/gas-mock
-var gas = require('gas-mock');
-
-var mymock = gas.globalMockDefault;
-
-// ソースフォルダの指定はプロジェクトルートからの相対パス
-var glib = gas.require('./src', mymock);
+var gas = init.gas;
+var mymock = init.mymock;
+var glib = init.glib;
 
 describe('dopost.js', function() {
 
