@@ -11,7 +11,7 @@ function doPost(e) {
     result: []
   };
   result.result.push(json);
-  result = common.createPayloadList(result);
+  result = Common.createPayloadList(result);
 
   var url = Telegram.BotAPI.getApiUrl('sendMessage');
   var text = '';

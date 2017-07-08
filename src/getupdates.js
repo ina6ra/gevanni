@@ -10,7 +10,7 @@ function myGetUpdates() {
   var json = Telegram.BotAPI.getUpdates(payload);
   if(json == false) return json;
 
-  var result = common.createPayloadList(json, uid);
+  var result = Common.createPayloadList(json, uid);
   if(result.length == 0) return false;
 
   var url = Telegram.BotAPI.getApiUrl('sendMessage');

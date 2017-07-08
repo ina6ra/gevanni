@@ -1,6 +1,6 @@
-var CommonClass = function() {
+var Common = {
 
-  this.createPayloadList = function(json, uid) {
+  createPayloadList: function(json, uid) {
     var update_id = 0;
     var text = '';
     var result = [];
@@ -32,5 +32,3 @@ var CommonClass = function() {
     return result;
   }
 };
-
-var common = new CommonClass();
