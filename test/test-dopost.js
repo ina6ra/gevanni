@@ -15,6 +15,9 @@ describe('dopost.js', function() {
   var data;
   var error;
 
+  glib.Logger.enabled = true;
+  glib.UrlFetchApp.enabled = false;
+
   // test for doPost()
   describe('#doPost()', function() {
 
@@ -49,10 +52,6 @@ describe('dopost.js', function() {
         }
       };
       e.postData.contents = JSON.stringify(data);
-      // UrlFetchApp.fetch の上書き
-      Sugar.Object.set(mymock, 'UrlFetchApp.fetch', function(url, params) {
-        return this.response;
-      });
       error = (()=>{result = glib.doPost(e)});
       expect(error).to.not.throw();
       expect(result).to.equal(true);

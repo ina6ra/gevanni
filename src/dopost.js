@@ -1,4 +1,6 @@
 function doPost(e) {
+  var sp = PropertiesService.getScriptProperties();
+  Telegram.BotAPI.setProperties(sp.getProperties());
   var json = JSON.parse(e.postData.contents);
 
   var update_id = Number(json.update_id);
@@ -11,10 +13,9 @@ function doPost(e) {
   result.result.push(json);
   result = common.createPayloadList(result);
 
-  var token = telegram.getApiToken();
-  var url = telegram.getApiUrl(token, 'sendMessage');
-
+  var url = Telegram.BotAPI.getApiUrl('sendMessage');
   var text = '';
+
   result.forEach(function(res) {
     text = UrlFetchApp.fetch(url, {
       'method': 'post',
@@ -23,7 +24,6 @@ function doPost(e) {
     });
   });
 
-  var sp = PropertiesService.getScriptProperties();
   sp.setProperty('update_id', String(update_id));
 
   return true;
