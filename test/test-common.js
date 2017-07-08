@@ -87,4 +87,10 @@ describe('Common.js', function() {
       assert.equal(result[0].disable_notification, true);
     });
   });
+
+  // test for sendMessage()
+  describe('#sendMessage()', function() {
+    it('muteHttpExceptions のテスト');
+  });
+
 });

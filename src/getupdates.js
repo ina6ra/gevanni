@@ -13,16 +13,7 @@ function myGetUpdates() {
   var result = Common.createPayloadList(json, uid);
   if(result.length == 0) return false;
 
-  var url = Telegram.BotAPI.getApiUrl('sendMessage');
-  var text = '';
-
-  result.forEach(function(res) {
-    text = UrlFetchApp.fetch(url, {
-      'method': 'post',
-      'muteHttpExceptions': true,
-      'payload': res
-    });
-  });
+  Common.sendMessage(result);
 
   sp.setProperty('update_id', String(json.result.pop().update_id));
 

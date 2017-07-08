@@ -30,5 +30,18 @@ var Common = {
       });
     });
     return result;
+  },
+
+  sendMessage: function(result) {
+    var url = Telegram.BotAPI.getApiUrl('sendMessage');
+    var text = '';
+
+    result.forEach(function(res) {
+      text = UrlFetchApp.fetch(url, {
+        'method': 'post',
+//        'muteHttpExceptions': true,
+        'payload': res
+      });
+    });
   }
 };
